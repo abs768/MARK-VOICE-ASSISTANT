@@ -135,7 +135,7 @@ if __name__ == "__main__":
         
         
         elif "send message" in query:
-            kit.sendwhatmsg("+919871954506","hi tapan! kaise ho bhai coding mast chalrahi kya",21,57)
+            kit.sendwhatmsg("+919871954506","hey Dude!, what's up ....How's life?",21,57)
             
         elif 'open geeksforgeeks' in query:
             url="geeksforgeeks.org"
