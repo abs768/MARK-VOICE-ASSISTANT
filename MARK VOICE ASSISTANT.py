@@ -13,7 +13,7 @@ from pywikihow import search_wikihow
 MASTER=" Sir BHAVANI SHANKAR " 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
-engine.setProperty('voice', voices[1].id)
+engine.setProperty('voice', voices[0].id)
 
 
 def speak(audio):
@@ -38,7 +38,7 @@ def wishMe():
         speak("Good Night" + MASTER)
         print("Good Night" + MASTER)
 
-    speak("I am Mark . Please tell me how may I help you")
+    speak("Hi am Mark Zuckerberg. Please tell me how may I help you")
 
 def takeCommand():
     #It takes microphone input from the user and returns string output
@@ -46,11 +46,11 @@ def takeCommand():
     r = sr.Recognizer()
     with sr.Microphone() as source:
         print("Listening...")
-        audio = r.listen(source)
+        audio = r.listen(source,timeout=8,phrase_time_limit=8)
 
     try:
         print("Recognizing...")    
-        query = r.recognize_google(audio, language='en-in')
+        query = r.recognize_google(audio, language='en-uk')
         print(f"User said: {query}\n")
 
     except Exception as e:
@@ -89,15 +89,15 @@ if __name__ == "__main__":
         
         elif 'open command prompt' in query:
             os.system("start cmd")
+            speak("Command Prompt Successfully opened")
             
-         
         elif 'open google' in query:
             url="google.com"
             chrome_path = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
             webbrowser.register('chrome', None, webbrowser.BackgroundBrowser(chrome_path))
-            webbrowser.get('chrome').open_new_tab(url)  
+            webbrowser.get('chrome').open_new_tab(url)
+            speak(f"Opened Google Webpage, for any suggestions in wikipedia use the keyword wikipedia...")
             
-             
         elif 'open youtube' in query:
             url="youtube.com"
             chrome_path = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
@@ -120,7 +120,7 @@ if __name__ == "__main__":
                 how=takeCommand()
                 try:
                     if 'exit' in how or 'close' in how:
-                        speak("Okay ma'am, how to do mode is closed")
+                        speak(f"Okay {MASTER}!, how to do mode is closed")
                         break
                     else:
                         max_results=1
@@ -130,7 +130,7 @@ if __name__ == "__main__":
                         speak(how_to[0].summary)
                         
                 except Exception as e:
-                    speak("Sorry ma'am! I'm not able to find this")
+                    speak("Sorry Sir! I'm not able to find this")
         
         
         
@@ -192,5 +192,5 @@ if __name__ == "__main__":
         elif 'no thanks' in query:
            speak("thanks for using me Sir, had a good time talking to you")
            sys.exit()
-        speak("Sir! Do you have any other work")
+        speak("Sir! Anything else you want to ask for")
 
